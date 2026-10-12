@@ -1,0 +1,52 @@
+# Independent TextVBench-Ref2V evaluator configuration.
+# Relative prompt/model paths are resolved from --project-root.
+sampling:
+  fps: 3
+  min_frames: 1
+  max_frames: 30
+  seed: 42
+  jitter_sec: 0.08
+
+runtime:
+  sample_workers: 1
+
+ocr:
+  device: cpu
+  confidence_threshold: 0.80
+  max_candidates: 20
+  detection_model_dir: ""
+  recognition_model_dir: ""
+
+matching:
+  target_batch_size: 3
+
+marker:
+  font_path: ""
+
+vlm:
+  ref_id_prompt_path: prompts/ref2v/TextVBench_Ref2V_RefID_Matching_System_Prompt.md
+  matching_prompt_path: prompts/ref2v/TextVBench_Ref2V_Target_Candidate_Matching_System_Prompt.md
+
+llm:
+  enabled: true
+  # These values can be overridden with TEXTVBENCH_VLM_BASE_URL,
+  # TEXTVBENCH_VLM_MODEL, and TEXTVBENCH_VLM_API_KEY.
+  active_profile: local-vlm
+  profiles:
+    local-vlm:
+      base_url: http://127.0.0.1:8000/v1
+      model: vision-language-model
+      api_key: EMPTY
+  timeout_sec: 180
+  record_retries: 2
+  structured_output: true
+  request:
+    temperature: 0.0
+    max_tokens: 512
+    top_p: 0.8
+    presence_penalty: 1.5
+    extra_body:
+      top_k: 20
+      chat_template_kwargs:
+        enable_thinking: false
+        preserve_thinking: false

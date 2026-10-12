@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TextVBench Ref2V result",
+  "type": "object",
+  "required": ["sample_id", "video", "references", "metrics"],
+  "properties": {
+    "sample_id": {"type": "string"},
+    "video_path": {"type": "string"},
+    "video": {"type": "object"},
+    "references": {"type": "array", "items": {"type": "object"}},
+    "sampling": {"type": "object"},
+    "frames": {"type": "array"},
+    "metrics": {
+      "type": "object",
+      "required": [
+        "per_target_spatial_fidelity",
+        "per_target_temporal_fidelity",
+        "length_weighted_spatial_fidelity",
+        "length_weighted_temporal_fidelity",
+        "textv_score",
+        "extra_text_ratio",
+        "reading_order_score"
+      ],
+      "properties": {
+        "per_target_spatial_fidelity": {"type": "object"},
+        "per_target_temporal_fidelity": {"type": "object"},
+        "length_weighted_spatial_fidelity": {"type": "number"},
+        "length_weighted_temporal_fidelity": {"type": "number"},
+        "textv_score": {"type": "number"},
+        "extra_text_ratio": {"type": "number"},
+        "reading_order_score": {"type": "number"}
+      }
+    }
+  }
+}

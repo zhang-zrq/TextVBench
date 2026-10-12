@@ -1,0 +1,122 @@
+{
+  "created_at": "2026-10-03T15:22:12.943412+00:00",
+  "input": "dataset/merged/video_prompt_dataset.jsonl",
+  "input_sha256": "d284c7f0efdf5c42fd87c79ca345be852c65315536e6dd6e619aa62e86bb5762",
+  "seed": 42,
+  "requested_sample_size": 200,
+  "selected_sample_count": 200,
+  "selected_image_count": 200,
+  "metadata_only": false,
+  "include_non_ok": false,
+  "selection_method": {
+    "top_level": "equal allocation across available sources with capacity-aware redistribution",
+    "product": "balanced by language, then product identity",
+    "amex": "balanced by category",
+    "synthetic": "balanced by app name",
+    "paper_media": "balanced by keyword, then difficulty band; non-ok images excluded by default"
+  },
+  "eligible_sample_count": 2846,
+  "excluded": {
+    "paper_media:image_status=void": 1
+  },
+  "source_quotas": {
+    "amex": 50,
+    "paper_media": 50,
+    "product": 50,
+    "synthetic": 50
+  },
+  "available_distribution": {
+    "source": {
+      "amex": 1615,
+      "paper_media": 99,
+      "product": 1075,
+      "synthetic": 57
+    },
+    "product_language": {
+      "chinese": 348,
+      "english": 727
+    },
+    "amex_category": {
+      "information_navigation": 100,
+      "message_chat": 125,
+      "payment_bill": 27,
+      "shopping_order": 1051,
+      "social_content": 312
+    },
+    "synthetic_app": {
+      "Facebook_Messenger": 10,
+      "Instagram": 10,
+      "QQ": 7,
+      "Telegram": 10,
+      "WhatsApp": 10,
+      "微信": 10
+    },
+    "paper_keyword": {
+      "书、书页": 10,
+      "信件/手写信/便签/纸条": 10,
+      "合同/协议类": 10,
+      "告示/公告/通缉令/通知": 10,
+      "地图/图纸": 9,
+      "报纸/杂志/新闻剪报": 10,
+      "支票/收据/借条": 10,
+      "档案/卷宗": 10,
+      "证书/证明类": 10,
+      "账本/手稿/日记": 10
+    },
+    "paper_difficulty_band": {
+      "long": 30,
+      "medium": 39,
+      "short": 30
+    },
+    "paper_image_status": {
+      "ok": 99
+    }
+  },
+  "selected_distribution": {
+    "source": {
+      "amex": 50,
+      "paper_media": 50,
+      "product": 50,
+      "synthetic": 50
+    },
+    "product_language": {
+      "chinese": 25,
+      "english": 25
+    },
+    "amex_category": {
+      "information_navigation": 10,
+      "message_chat": 10,
+      "payment_bill": 10,
+      "shopping_order": 10,
+      "social_content": 10
+    },
+    "synthetic_app": {
+      "Facebook_Messenger": 8,
+      "Instagram": 9,
+      "QQ": 7,
+      "Telegram": 9,
+      "WhatsApp": 9,
+      "微信": 8
+    },
+    "paper_keyword": {
+      "书、书页": 5,
+      "信件/手写信/便签/纸条": 5,
+      "合同/协议类": 5,
+      "告示/公告/通缉令/通知": 5,
+      "地图/图纸": 5,
+      "报纸/杂志/新闻剪报": 5,
+      "支票/收据/借条": 5,
+      "档案/卷宗": 5,
+      "证书/证明类": 5,
+      "账本/手稿/日记": 5
+    },
+    "paper_difficulty_band": {
+      "long": 17,
+      "medium": 16,
+      "short": 17
+    },
+    "paper_image_status": {
+      "ok": 50
+    }
+  }
+}

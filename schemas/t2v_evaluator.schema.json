@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://textvbench.local/schemas/t2v_evaluator.schema.json",
+  "title": "TextVBench-T2V evaluator result",
+  "type": "object",
+  "required": ["sample_id", "video_path", "language", "sampling", "video", "frames", "metrics"],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "video_path": {"type": "string", "minLength": 1},
+    "language": {"enum": ["en", "zh"]},
+    "sampling": {
+      "type": "object",
+      "required": ["timestamps", "config"],
+      "properties": {
+        "timestamps": {"type": "array", "items": {"type": "number", "minimum": 0}},
+        "config": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "video": {
+      "type": "object",
+      "required": ["fps", "frame_count", "duration_sec"],
+      "properties": {
+        "fps": {"type": "number", "minimum": 0},
+        "frame_count": {"type": "integer", "minimum": 0},
+        "duration_sec": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "frames": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "carriers", "matches", "extra_ids", "extra_text_ratio"],
+        "properties": {
+          "timestamp": {"type": "number", "minimum": 0},
+          "frame_index": {"type": ["integer", "null"], "minimum": 0},
+          "ocr_candidates": {"type": "array"},
+          "active_candidates": {"type": "array"},
+          "carriers": {"type": "array"},
+          "matches": {"type": "array"},
+          "extra_ids": {"type": "array", "items": {"type": "string"}},
+          "extra_text_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+          "vlm_attempts": {"type": "object"}
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["targets", "spatial_fidelity", "temporal_fidelity", "textv_score", "extra_text_ratio"],
+      "properties": {
+        "targets": {"type": "array"},
+        "spatial_fidelity": {"type": "number", "minimum": 0, "maximum": 1},
+        "temporal_fidelity": {"type": "number", "minimum": 0, "maximum": 1},
+        "textv_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "extra_text_ratio": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

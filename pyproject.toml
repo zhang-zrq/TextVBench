@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "textvbench"
+version = "0.1.0"
+description = "Benchmarks and evaluators for visual text rendering in generated video"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "openai>=1.0",
+  "opencv-python-headless>=4.8",
+  "pillow>=10.0",
+  "pyyaml>=6.0",
+  "tqdm>=4.60",
+]
+
+[project.optional-dependencies]
+# Install a PaddlePaddle build appropriate for the host before this extra.
+ocr = ["paddleocr>=3.0,<4"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+textvbench = "textvbench.cli:main"
+textvbench-t2v-review = "textvbench.evaluators.t2v.review_api.server:main"
+textvbench-ref2v-review = "textvbench.evaluators.ref2v.review_api.server:main"
+
+[project.urls]
+Homepage = "https://github.com/zhang-zrq/TextVBench"
+Repository = "https://github.com/zhang-zrq/TextVBench"
+Issues = "https://github.com/zhang-zrq/TextVBench/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

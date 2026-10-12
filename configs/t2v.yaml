@@ -1,0 +1,58 @@
+# TextVBench-T2V evaluator. Paths are relative to the repository root.
+# Language is intentionally absent: callers must explicitly pass --language
+# for every run so an EN video can never be evaluated against ZH targets (or
+# vice versa).
+sampling:
+  fps: 3
+  min_frames: 1
+  max_frames: 30
+  seed: 42
+  jitter_sec: 0.08
+  adaptive: true
+  ned_jump_threshold: 0.35
+  carrier_presence_hint: false
+
+ocr:
+  # Keep OCR isolated from the video-generation/VLM GPUs. Change to gpu:0 on
+  # a dedicated evaluation worker when sufficient memory is available.
+  device: cpu
+  confidence_threshold: 0.80
+  max_candidates: 20
+  # Leave these empty to use PaddleOCR's managed models, or set local paths.
+  detection_model_dir: ""
+  recognition_model_dir: ""
+
+matching:
+  fast_match_threshold: 0.95
+  target_batch_size: 3
+
+marker:
+  font_path: ""
+
+vlm:
+  carrier_prompt_path: prompts/t2v/TextVBench_T2V_carrier_consistency_system_prompt.md
+  matching_prompt_path: prompts/t2v/TextVBench_T2V_target_candidate_matching_system_prompt.md
+
+llm:
+  # These values can be overridden with TEXTVBENCH_VLM_BASE_URL,
+  # TEXTVBENCH_VLM_MODEL, and TEXTVBENCH_VLM_API_KEY.
+  active_profile: local-vlm
+  profiles:
+    local-vlm:
+      base_url: http://127.0.0.1:8000/v1
+      model: vision-language-model
+      api_key: EMPTY
+      api_style: chat
+  timeout_sec: 180
+  record_retries: 2
+  structured_output: true
+  request:
+    temperature: 0.0
+    max_tokens: 512
+    top_p: 0.8
+    presence_penalty: 1.5
+    extra_body:
+      top_k: 20
+      chat_template_kwargs:
+        enable_thinking: false
+        preserve_thinking: false
