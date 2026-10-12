@@ -1,6 +1,14 @@
 # TextVBench
 
-[Project Page](https://zhang-zrq.github.io/textvbench-page/) | [Paper](https://arxiv.org/abs/2610.13412)
+<p align="center">
+  <a href="https://zhang-zrq.github.io/textvbench-page/">
+    <img src="https://img.shields.io/badge/Project_Page-2563EB?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Project Page" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://arxiv.org/abs/2610.13412">
+    <img src="https://img.shields.io/badge/Paper-B31B1B?style=for-the-badge&amp;logo=arxiv&amp;logoColor=white" alt="Paper on arXiv" />
+  </a>
+</p>
 
 TextVBench evaluates visual-text rendering in generated videos. This release
 contains two complementary benchmarks:
