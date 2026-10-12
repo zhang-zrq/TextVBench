@@ -1,5 +1,7 @@
 # TextVBench
 
+[Project Page](https://zhang-zrq.github.io/textvbench-page/) | [Paper](https://arxiv.org/abs/2610.13412)
+
 TextVBench evaluates visual-text rendering in generated videos. This release
 contains two complementary benchmarks:
 
