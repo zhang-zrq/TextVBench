@@ -42,12 +42,16 @@ TextVBench/
 └── tests/
 ```
 
-You can ask your AI agent to start with [AGENTS.md](AGENTS.md), then read
-[DATASET.md](DATASET.md) and the three guides in [docs/](docs/):
-[T2V evaluation](docs/t2v_evaluator.md),
-[Ref2V evaluation](docs/ref2v_evaluator.md), and
-[Ref2V input/output](docs/ref2v_io.md). These four documents explain how to
-prepare inputs, run evaluations, and interpret results.
+To help your AI agent use TextVBench, ask it to read `AGENTS.md` first, then
+consult the relevant guides below:
+
+| Document | Purpose |
+| --- | --- |
+| [AGENTS.md](AGENTS.md) | Agent workflow: environment checks, smoke tests, evaluation, and result reporting. |
+| [DATASET.md](DATASET.md) | Benchmark fields, sample IDs, T2V language variants, and Ref2V reference-image mappings. |
+| [docs/t2v_evaluator.md](docs/t2v_evaluator.md) | Frame sampling, OCR, carrier/target matching, and T2V metric definitions. |
+| [docs/ref2v_evaluator.md](docs/ref2v_evaluator.md) | Reference-image OCR, multi-reference matching, text-preservation metrics, and reading-order scoring. |
+| [docs/ref2v_io.md](docs/ref2v_io.md) | Ref2V input/output layouts, video manifests, evaluation commands, and debug/review artifacts. |
 
 ## Installation
 
