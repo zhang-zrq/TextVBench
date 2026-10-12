@@ -42,11 +42,12 @@ TextVBench/
 └── tests/
 ```
 
-Agents and automated evaluation systems should start with
-[AGENTS.md](AGENTS.md). See [DATASET.md](DATASET.md) for the public data
-contract. Metric details are documented in
-[docs/t2v_evaluator.md](docs/t2v_evaluator.md) and
-[docs/ref2v_evaluator.md](docs/ref2v_evaluator.md).
+You can ask your AI agent to start with [AGENTS.md](AGENTS.md), then read
+[DATASET.md](DATASET.md) and the three guides in [docs/](docs/):
+[T2V evaluation](docs/t2v_evaluator.md),
+[Ref2V evaluation](docs/ref2v_evaluator.md), and
+[Ref2V input/output](docs/ref2v_io.md). These four documents explain how to
+prepare inputs, run evaluations, and interpret results.
 
 ## Installation
 
@@ -98,18 +99,33 @@ export TEXTVBENCH_VLM_API_KEY=EMPTY
 OCR model directories are optional. Empty paths let PaddleOCR manage its model
 files; local paths can be set in each YAML configuration.
 
+## Organize generated videos
+
+Generate videos with your own model and save one video per sample as
+`<sample_id>.mp4`, preserving the exact ID from the benchmark JSONL:
+
+```text
+generated/<model>/<run>/
+├── t2v-en/videos/OPENVID_17a74a97583f__easy.mp4
+├── t2v-zh/videos/OPENVID_17a74a97583f__easy.mp4
+└── ref2v/videos/0001.mp4
+```
+
+Keep models, generation runs, and T2V languages separate; preserve Ref2V IDs'
+leading zeros. Pass the corresponding `videos/` directory to `--video-dir`.
+This layout is recommended; videos may also live outside the repository.
+
 ## Evaluate T2V
 
-Generate one video per sample and name it `<sample_id>.mp4`. Evaluate English
-and Chinese generations in separate runs because the language is an explicit
-part of the ground-truth contract.
+Use `--language en` for videos generated from `prompt_en`, or `--language zh`
+for `prompt_zh`. Evaluate the two languages in separate runs.
 
 ```bash
 textvbench evaluate t2v \
   --input data/T2V/benchmark_300.jsonl \
-  --video-dir /path/to/generated/t2v/videos \
+  --video-dir generated/model/run/t2v-en/videos \
   --language en \
-  --output evaluation/model/run/t2v/metrics.jsonl
+  --output evaluation/model/run/t2v-en/metrics.jsonl
 ```
 
 The evaluator writes successful records to `passed/metrics.jsonl`, failures to
@@ -127,7 +143,7 @@ references at evaluation time.
 ```bash
 textvbench evaluate ref2v \
   --input data/Ref2V \
-  --video-dir /path/to/generated/ref2v/videos \
+  --video-dir generated/model/run/ref2v/videos \
   --output evaluation/model/run/ref2v \
   --debug-dir evaluation/model/run/ref2v_debug \
   --sample-workers 4
