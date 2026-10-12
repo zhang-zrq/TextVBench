@@ -155,22 +155,21 @@ metrics, even if an individual VLM call retried or failed; otherwise it is
 Raw debug directories can contain prompts, generated imagery, endpoints, and
 machine paths. Do not publish them directly.
 
-## Tests
+## Citation
 
-```bash
-python3 -m pytest -q
+If you use TextVBench in your research, please cite our paper:
+
+```bibtex
+@misc{zhang2026textvbenchevaluatingtextrendering,
+      title={TextVBench: Evaluating Text Rendering and Preservation in Video Generation},
+      author={Ruiqiang Zhang and Hengyi Wang and Chang Liu and Guanjie Wang and Zehua Ma and Weiming Zhang},
+      year={2026},
+      eprint={2610.13412},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2610.13412},
+}
 ```
-
-The test suite uses synthetic media and mocked OCR/VLM calls; it does not
-require model weights or a running inference endpoint.
-
-## Configuration and security
-
-See [.env.example](.env.example) for environment variable names and
-[SECURITY.md](SECURITY.md) for handling credentials and debug bundles. Load
-environment variables in your shell; TextVBench does not automatically read
-`.env` files. Keep experiment-specific YAML overrides in ignored
-`*.local.yaml` files.
 
 ## License
 
